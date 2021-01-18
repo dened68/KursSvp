@@ -1,0 +1,72 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tetris"
+        xmlns:Properties="clr-namespace:Tetris.Properties" x:Class="Tetris.MainWindow"
+        mc:Ignorable="d"
+        Title="Tetris" Height="570" Width="550" HorizontalAlignment="Left" VerticalAlignment="Top" ResizeMode="CanMinimize">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="DarkBlue" Offset="0"/>
+            <GradientStop Color="DarkRed" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid x:Name="grid" Margin="0,0,0,1">
+        <Grid x:Name="tetrisGrid" Margin="28,17,0,0" Panel.ZIndex="2" Height="500" Width="312.5" HorizontalAlignment="Left" VerticalAlignment="Top" Background="Black">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25" ToolTip=""/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+                <RowDefinition Height="31.25"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25" ToolTip=""/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+                <ColumnDefinition Width="31.25"/>
+            </Grid.ColumnDefinitions>
+
+
+        </Grid>
+        <Button x:Name="startStopBtn" Content="Play" HorizontalAlignment="Left" Margin="394,463,0,0" VerticalAlignment="Top" Width="128"  Click="Button_Click_1" Height="54" FontSize="18" FontFamily="Algerian" FontWeight="Normal" FontStyle="Normal">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9C1F0B" Offset="0.157"/>
+                    <GradientStop Color="#FFEC3B29" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Rectangle x:Name="back" HorizontalAlignment="Left" Height="505" Width="316.5" Margin="26,15,0,0" VerticalAlignment="Top" Fill="White"/>
+        <Canvas x:Name="nextShapeCanvas" HorizontalAlignment="Left" Height="112" Margin="384,155,0,0" VerticalAlignment="Top" Width="142"/>
+        <Label x:Name="nextTxt" Content="NEXT" HorizontalAlignment="Left" Margin="357,103,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" FontFamily="Showcard Gothic" Background="{x:Null}" Height="34" Width="84"/>
+        <TextBlock x:Name="GameOverTxt" HorizontalAlignment="Left" Margin="363,311,0,0" TextWrapping="Wrap" Text="Game Over" VerticalAlignment="Top" Foreground="Red" TextAlignment="Center" FontFamily="Algerian" Height="128" Width="159" FontSize="48" Visibility="Visible">
+            <TextBlock.Effect>
+                <BlurEffect Radius="2" RenderingBias="Quality"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <TextBlock x:Name="levelTxt" HorizontalAlignment="Left" Margin="363,286,0,0" TextWrapping="Wrap" Text="Level:" VerticalAlignment="Top" Foreground="White" FontSize="16" Width="157" FontFamily="Showcard Gothic"/>
+        <Button x:Name="Score" HorizontalAlignment="Left" Margin="360,10,0,0" Content="Score" Click="Score_Click" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Showcard Gothic"  Background="Black" />
+        <!--<TextBlock HorizontalAlignment="Left" Margin="360,10,0,0" TextWrapping="Wrap" Text="Score" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Showcard Gothic" TextAlignment="Center" Background="Black"/>-->
+        <TextBlock x:Name="scoreTxt" HorizontalAlignment="Left" Margin="360,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Showcard Gothic" TextAlignment="Center" Background="Black" Text="0"/>
+    </Grid>
+</Window>
