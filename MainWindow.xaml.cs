@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,8 +27,7 @@ namespace Tetris
     public partial class MainWindow : Window
     {
         private const int GAMESPEED = 700;// millisecond
-       
-       
+        
         DispatcherTimer timer;
         Random shapeRandom;
         private int rowCount = 0;
@@ -63,8 +63,10 @@ namespace Tetris
         private static Color L_TetrominoColor = Colors.LightSeaGreen;
         List<int> currentTetrominoRow = null;
         List<int> currentTetrominoColumn = null;
+        List<Tetris.Leader> leaders = new List<Leader>(2);
+        string language;
 
-        
+
         // Color for shape tetromino
         Color[] shapeColor = {  O_TetrominoColor,I_TetrominoColor,
                                 T_TetrominoColor,S_TetrominoColor,
@@ -156,6 +158,7 @@ namespace Tetris
         public MainWindow()
         {
             InitializeComponent();
+            language = "en-US";
             gameSpeed = GAMESPEED;    
             //created event for key press
             KeyDown += MainWindow_KeyDown;
@@ -179,21 +182,21 @@ namespace Tetris
             if (!timer.IsEnabled) { return; }
             switch (e.Key.ToString())
             {
-                case "Up":
+                case "W":
                     rotation += 90;
                     if (rotation > 270) { rotation = 0; }
                     shapeRotation(rotation);
                     break;
-                case "Down":
+                case "S":
                     downPos++;
                     break;
-                case "Right":
+                case "D":
                     // Check if collided
                     TetroCollided(); 
                     if (!rightCollided) { leftPos++; }
                     rightCollided = false;
                     break;
-                case "Left":
+                case "A":
                     // Check if collided
                     TetroCollided(); 
                     if (!leftCollided) { leftPos--;}
@@ -291,13 +294,14 @@ namespace Tetris
                nextTxt.Visibility = levelTxt.Visibility = Visibility.Visible;
                levelTxt.Text = "Level: " + gameLevel.ToString();
                timer.Start();
-               startStopBtn.Content = "Stop Game";
+               startStopBtn.Content = TryFindResource("r_Stop_Game");
+               
                gameActive = true;
              }
             else
             {
                 timer.Stop();
-                startStopBtn.Content = "Start Game";
+                startStopBtn.Content = TryFindResource("r_Play");
             }
         }
                       
@@ -584,8 +588,9 @@ namespace Tetris
         {         
           isGameOver = true;
           reset();
-          startStopBtn.Content = "Start Game";
+          startStopBtn.Content = TryFindResource("r_Play");
           GameOverTxt.Visibility = Visibility.Visible;
+          record_score(gameScore);
           rowCount = 0;
           columnCount = 0;
           leftPos = 0;
@@ -660,7 +665,38 @@ namespace Tetris
         }
         
 
-    
+        private void Score_Click(object sender, RoutedEventArgs e)
+        {
+            LeaderBoard leaderBoard = new LeaderBoard(leaders);
+            leaderBoard.Show();
+            timer.Stop();
+            startStopBtn.Content = TryFindResource("r_Play");            
+        }
+
+        public void record_score(int score)
+        {
+            EnterName enterName = new EnterName();
+            enterName.ShowDialog();
+            leaders.Add(new Leader( enterName.player_name.Text, gameScore));
+            
+        }
+
+        private void ru_Click(object sender, RoutedEventArgs e)
+        {
+            language = ((Button)e.OriginalSource).Tag.ToString();
+            if (language != null)
+            {
+                CultureInfo lang = new CultureInfo(language);
+
+                if (lang != null)
+                {
+                    App.Language = lang;
+                }
+
+            }
+        }
+
+        
     }
 
     

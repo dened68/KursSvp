@@ -1,0 +1,13 @@
+﻿<Window x:Class="Tetris.EnterName"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tetris"
+        mc:Ignorable="d"
+        Title="{DynamicResource r_Title_Name}" Height="144.375" Width="293.75">
+    <Grid >
+        <TextBox  x:Name="player_name" Margin="23,23,27,56"  />
+        <Button x:Name="Player_name_button" Margin="65,62,60,10" Content="OK" Click="Player_name_button_Click"/>
+    </Grid>
+</Window>
