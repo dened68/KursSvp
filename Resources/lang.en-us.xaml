@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:v="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:Tetris.Resources">
+
+    <v:String x:Key="r_Title">Тетрис</v:String>
+    <v:String x:Key="r_Russian">Русский</v:String>
+    <v:String x:Key="r_English">Английский</v:String>
+    <v:String x:Key="r_GameOver">Конец Игры</v:String>
+    <v:String x:Key="r_View">Вид</v:String>
+    <v:String x:Key="r_Play">Начать игру</v:String>
+    <v:String x:Key="r_Language">Язык</v:String>
+    <v:String x:Key="r_Score">Очки</v:String>
+    <v:String x:Key="r_Next">Следующая</v:String>
+    <v:String x:Key="r_Level">Уровень</v:String>
+    <v:String x:Key="r_Title_Name">Введите имя</v:String>
+    <v:String x:Key="r_Title_Leaderboard">Таблица Лидеров</v:String>
+    <v:String x:Key="r_Stop_Game">Остановить игру</v:String>
+
+</ResourceDictionary>
