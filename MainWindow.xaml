@@ -48,7 +48,7 @@
 
 
         </Grid>
-        <Button x:Name="startStopBtn" Content="{DynamicResource r_Play}" HorizontalAlignment="Left" Margin="394,463,0,0" VerticalAlignment="Top" Width="128"  Click="Button_Click_1" Height="54" FontSize="18" FontFamily="Algerian" FontWeight="Normal" FontStyle="Normal">
+        <Button x:Name="startStopBtn" Content="{DynamicResource r_Play}" HorizontalAlignment="Left" Margin="363,463,0,0" VerticalAlignment="Top" Width="171"  Click="Button_Click_1" Height="54" FontSize="22" FontFamily="Segoe Script" FontWeight="Normal" FontStyle="Normal">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FF9C1F0B" Offset="0.157"/>
@@ -58,19 +58,19 @@
         </Button>
         <Rectangle x:Name="back" HorizontalAlignment="Left" Height="510" Width="316" Margin="26,25,0,0" VerticalAlignment="Top" Fill="White"/>
         <Canvas x:Name="nextShapeCanvas" HorizontalAlignment="Left" Height="112" Margin="384,155,0,0" VerticalAlignment="Top" Width="142"/>
-        <Label x:Name="nextTxt" Content="{DynamicResource r_Next}" HorizontalAlignment="Left" Margin="357,103,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" FontFamily="Showcard Gothic" Background="{x:Null}" Height="34" Width="115"/>
-        <TextBlock x:Name="GameOverTxt" HorizontalAlignment="Left" Margin="363,311,0,0" TextWrapping="Wrap" Text="{DynamicResource r_GameOver}" VerticalAlignment="Top" Foreground="Red" TextAlignment="Center" FontFamily="Algerian" Height="128" Width="159" FontSize="48" Visibility="Visible">
+        <Label x:Name="nextTxt" Content="{DynamicResource r_Next}" HorizontalAlignment="Left" Margin="357,103,0,0" VerticalAlignment="Top" Foreground="White" FontSize="18" FontWeight="Bold" FontFamily="Segoe Script" Background="{x:Null}" Height="34" Width="115"/>
+        <TextBlock x:Name="GameOverTxt" HorizontalAlignment="Left" Margin="361,311,0,0" TextWrapping="Wrap" Text="{DynamicResource r_GameOver}" VerticalAlignment="Top" Foreground="Red" TextAlignment="Center" FontFamily="Segoe Script" Height="135" Width="159" FontSize="48" Visibility="Visible" IsEnabled="False">
             <TextBlock.Effect>
                 <BlurEffect Radius="2" RenderingBias="Quality"/>
             </TextBlock.Effect>
         </TextBlock>
-        <TextBlock x:Name="levelTxt" HorizontalAlignment="Left" Margin="363,286,0,0" TextWrapping="Wrap" Text="{DynamicResource r_Level}" VerticalAlignment="Top" Foreground="White" FontSize="16" Width="157" FontFamily="Showcard Gothic"/>
-        <Button x:Name="Score" HorizontalAlignment="Left" Margin="360,10,0,0" Content="{DynamicResource r_Score}" Click="Score_Click" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Showcard Gothic"  Background="Black" />
+        <TextBlock x:Name="levelTxt" HorizontalAlignment="Left" Margin="357,286,0,0" TextWrapping="Wrap" Text="{DynamicResource r_Level}" VerticalAlignment="Top" Foreground="White" FontSize="18" Width="169" FontFamily="Segoe Script"/>
+        <Button x:Name="Score" HorizontalAlignment="Left" Margin="360,10,0,0" Content="{DynamicResource r_Score}" Click="Score_Click" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Segoe Script"  Background="Black" />
         <!--<TextBlock HorizontalAlignment="Left" Margin="360,10,0,0" TextWrapping="Wrap" Text="Score" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Showcard Gothic" TextAlignment="Center" Background="Black"/>-->
         <TextBlock x:Name="scoreTxt" HorizontalAlignment="Left" Margin="360,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="35" Width="166" Foreground="#FFFFF161" FontSize="24" FontFamily="Showcard Gothic" TextAlignment="Center" Background="Black" Text="0"/>
-        <Menu Height="20" VerticalAlignment="Top"  Margin="0,0,502,0" Background="Black"   >
-            <MenuItem Header="{DynamicResource r_View}" Foreground="#FFFFF161" >
-                <MenuItem Header="{DynamicResource r_Language}" Foreground="Black">
+        <Menu x:Name="Menu" Height="20" VerticalAlignment="Top"  Margin="0,0,502,0" Background="Black"   >
+            <MenuItem Header="{DynamicResource r_View}" Foreground="#FFFFF161"  Width="42" >
+                <MenuItem Header="{DynamicResource r_Language}" Foreground="Black" >
                     <Button x:Name="ru" Tag="ru-RU" Content="{DynamicResource r_English}" Click="ru_Click" ></Button>
                     <Button x:Name="en" Tag="en-US" Content="{DynamicResource r_Russian}" Click="ru_Click" ></Button>
                 </MenuItem>

@@ -264,7 +264,7 @@ namespace Tetris
                 {
                     gameSpeed -= 50;
                     gameLevel++;
-                    levelTxt.Text = "Level: " + gameLevel.ToString();
+                    levelTxt.Text = TryFindResource("r_Level") + gameLevel.ToString();
                 }
                 else { gameSpeed = 50; }
                 timer.Stop();
@@ -283,23 +283,27 @@ namespace Tetris
           
             if(isGameOver)
             {
+                
                 tetrisGrid.Children.Clear();
                 nextShapeCanvas.Children.Clear();
                 GameOverTxt.Visibility = Visibility.Collapsed;
                 isGameOver = false;
+                
             }
             if(!timer.IsEnabled)
              {
                if (!gameActive) { scoreTxt.Text = "0"; leftPos = 3; addShape(currentShapeNumber,leftPos); }
                nextTxt.Visibility = levelTxt.Visibility = Visibility.Visible;
-               levelTxt.Text = "Level: " + gameLevel.ToString();
+               levelTxt.Text = TryFindResource("r_Level") + gameLevel.ToString();
                timer.Start();
                startStopBtn.Content = TryFindResource("r_Stop_Game");
+               Menu.IsEnabled = false;
                
                gameActive = true;
              }
             else
             {
+                Menu.IsEnabled = true;
                 timer.Stop();
                 startStopBtn.Content = TryFindResource("r_Play");
             }
@@ -585,8 +589,9 @@ namespace Tetris
         }
         // The game over reset
         private void gameOver()
-        {         
-          isGameOver = true;
+        {
+            Menu.IsEnabled = true;
+            isGameOver = true;
           reset();
           startStopBtn.Content = TryFindResource("r_Play");
           GameOverTxt.Visibility = Visibility.Visible;
@@ -677,8 +682,7 @@ namespace Tetris
         {
             EnterName enterName = new EnterName();
             enterName.ShowDialog();
-            leaders.Add(new Leader( enterName.player_name.Text, gameScore));
-            
+            leaders.Add(new Leader( enterName.player_name.Text, gameScore));            
         }
 
         private void ru_Click(object sender, RoutedEventArgs e)
@@ -692,12 +696,12 @@ namespace Tetris
                 {
                     App.Language = lang;
                 }
-
             }
         }
 
-        
-    }
-
-    
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            timer.Stop();
+        }
+    }    
 }
