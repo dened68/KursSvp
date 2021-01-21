@@ -1,0 +1,7 @@
+D:\labs3\KursSvp\obj\Debug\Tetris.csprojAssemblyReference.cache
+D:\labs3\KursSvp\obj\Debug\EnterName.g.cs
+D:\labs3\KursSvp\obj\Debug\LeaderBoard.g.cs
+D:\labs3\KursSvp\obj\Debug\MainWindow.g.cs
+D:\labs3\KursSvp\obj\Debug\App.g.cs
+D:\labs3\KursSvp\obj\Debug\Tetris_MarkupCompile.cache
+D:\labs3\KursSvp\obj\Debug\Tetris_MarkupCompile.lref
