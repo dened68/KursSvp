@@ -1,6 +1,4 @@
-﻿// by Antonis Ntit
-// email:spanomarias68@gmail.com
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -50,7 +48,7 @@ namespace Tetris
         private bool rightCollided = false;
         private bool isGameOver = false;
         private int gameSpeed;
-        private int levelScale = 60;// every 60 second increase level by 1 until 10
+        private int levelScale = 60;
         private double gameSpeedCounter=0;
         private int gameLevel=1;
         private int gameScore = 0;
@@ -67,7 +65,7 @@ namespace Tetris
         string language;
 
 
-        // Color for shape tetromino
+        // цвет
         Color[] shapeColor = {  O_TetrominoColor,I_TetrominoColor,
                                 T_TetrominoColor,S_TetrominoColor,
                                 Z_TetrominoColor,J_TetrominoColor,
@@ -82,19 +80,19 @@ namespace Tetris
 
         #region Array of tetrominos shape 
 
-        // arrays of tetromino shape
-        //---- O Tetromino------------
+        // Все возможные фигуры
+        // Квадрат
         public int[,] O_Tetromino = new int[2, 2] { { 1, 1 },  // * *
                                                     { 1, 1 }}; // * *
 
-        //---- I Tetromino------------
+        // Палка
         public int[,] I_Tetromino_0 = new int[2, 4] { { 1, 1, 1, 1 }, { 0, 0, 0, 0 } };// * * * *
 
         public int[,] I_Tetromino_90 = new int[4, 2] {{ 1,0 },   // *  
                                                        { 1,0 },  // *
                                                        { 1,0 },  // *
                                                        { 1,0 }}; // *
-        //---- T Tetromino------------
+        // Т образная
         public int[,] T_Tetromino_0 = new int[2, 3] {{0,1,0},    //    * 
                                                      {1,1,1}};   //  * * *
 
@@ -108,21 +106,21 @@ namespace Tetris
         public int[,] T_Tetromino_270 = new int[3, 2] {{0,1},    //   * 
                                                        {1,1},    // * *
                                                        {0,1}};   //   *  
-        //---- S Tetromino------------
+        // S образная
         public int[,] S_Tetromino_0 = new int[2, 3] {{0,1,1},    //   * *
                                                      {1,1,0}};   // * *
 
         public int[,] S_Tetromino_90 = new int[3, 2] {{1,0},     // *
                                                       {1,1},     // * *
                                                       {0,1}};    //   *
-        //---- Z Tetromino------------
+        // обратная S
         public int[,] Z_Tetromino_0 = new int[2, 3] {{1,1,0},    // * *
                                                      {0,1,1}};   //   * *
 
         public int[,] Z_Tetromino_90 = new int[3, 2] {{0,1},     //   *
                                                       {1,1},     // * *
                                                       {1,0}};    // *
-        //---- J Tetromino------------
+        // обратная L
         public int[,] J_Tetromino_0 = new int[2, 3] {{1,0,0},    // * 
                                                      {1,1,1}};   // * * *
 
@@ -137,7 +135,7 @@ namespace Tetris
                                                        {0,1},    //   *
                                                        {1,1 }};  // * *
 
-        //---- L Tetromino------------
+        // L образная
         public int[,] L_Tetromino_0 = new int[2, 3] {{0,0,1},    //     * 
                                                      {1,1,1}};   // * * *
 
@@ -160,11 +158,11 @@ namespace Tetris
             InitializeComponent();
             language = "en-US";
             gameSpeed = GAMESPEED;    
-            //created event for key press
+            
             KeyDown += MainWindow_KeyDown;
-            // init timer
+            
             timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, gameSpeed); // 700 millisecond
+            timer.Interval = new TimeSpan(0, 0, 0, 0, gameSpeed); 
             timer.Tick += Timer_Tick;
             tetrisGridColumn = tetrisGrid.ColumnDefinitions.Count;
             tetrisGridRow = tetrisGrid.RowDefinitions.Count;
@@ -175,7 +173,7 @@ namespace Tetris
             
         }
             
-        // Key event method for moving shape down,rigth,left and rotation
+        // Управление
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             
@@ -191,13 +189,13 @@ namespace Tetris
                     downPos++;
                     break;
                 case "D":
-                    // Check if collided
+                    
                     TetroCollided(); 
                     if (!rightCollided) { leftPos++; }
                     rightCollided = false;
                     break;
                 case "A":
-                    // Check if collided
+                    
                     TetroCollided(); 
                     if (!leftCollided) { leftPos--;}
                     leftCollided = false;
@@ -206,10 +204,10 @@ namespace Tetris
             moveShape();
         }
 
-        // Rotation tetrominos 
+        // Вращение
         private void shapeRotation(int _rotation)
         {
-            // Check if collided
+            // Проверка можно ли вращать
             if (rotationCollided(rotation))
             {
                 rotation -= 90;
@@ -253,7 +251,7 @@ namespace Tetris
         }
 
        
-        // Timer tick method for moving shape down
+        // движение вниз
         private void Timer_Tick(object sender, EventArgs e)
         {
             downPos++;
@@ -272,12 +270,11 @@ namespace Tetris
                 timer.Start();
                 gameSpeedCounter = 0;
             }
-            gameSpeedCounter += (gameSpeed/1000f);
-          
+            gameSpeedCounter += (gameSpeed/1000f);          
         }
 
        
-        // Button start stop clicked method
+        // Метод для кнопки старта
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
           
@@ -308,11 +305,11 @@ namespace Tetris
                 startStopBtn.Content = TryFindResource("r_Play");
             }
         }
-                      
-        // Add new shape tetromino in grid
+
+        // Добавление новой фигуры на поле
         private void addShape(int shapeNumber,int _left=0,int _down=0)
-        {           
-            // Remove previous position of tetromino
+        {
+            // Меняет предыдущую позицию
             removeShape();
             currentTetrominoRow = new List<int>();
             currentTetrominoColumn = new List<int>();
@@ -326,7 +323,7 @@ namespace Tetris
             int secondDim = currentTetromino.GetLength(1);
             currentTetrominoWidth = secondDim;
             currentTetrominoHeigth = firstDim;
-            // This is only for I Tetromino
+            //отдельно для палки
             if (currentTetromino == I_Tetromino_90)
             {
              currentTetrominoWidth = 1;
@@ -366,13 +363,13 @@ namespace Tetris
             }
         }
 
-        // Add new shape in new location
+        // движение
         private void moveShape()
         {
             leftCollided = false;
             rightCollided = false;
 
-            // Check if collided
+            // проверка на доступность
             TetroCollided(); 
             if (leftPos > (tetrisGridColumn - currentTetrominoWidth))
             {
@@ -388,18 +385,18 @@ namespace Tetris
             addShape(currentShapeNumber, leftPos, downPos);
         }
 
-        // Check collided if rotated tetromino 
+        // функция для проверки колиззии при проверки
         private bool rotationCollided(int _rotation)
         {
-           if (   checkCollided(0, currentTetrominoWidth - 1))   { return true; }//Bottom collision 
-           else if (checkCollided(0, - (currentTetrominoWidth - 1)) ) { return true; }// Top collision
-           else if (checkCollided(0, -1)) { return true; }// Top collision
-           else if (checkCollided(-1, currentTetrominoWidth - 1)){ return true; }// Left collision
-           else if (checkCollided(1, currentTetrominoWidth - 1)) { return true; }// Right collision
+           if (   checkCollided(0, currentTetrominoWidth - 1))   { return true; }//низ  
+           else if (checkCollided(0, - (currentTetrominoWidth - 1)) ) { return true; }//верх
+           else if (checkCollided(0, -1)) { return true; }// верх
+           else if (checkCollided(-1, currentTetrominoWidth - 1)){ return true; }// лево
+           else if (checkCollided(1, currentTetrominoWidth - 1)) { return true; }// право
            return false;
         }
         
-        // Check if collided in sides , bottom and other shapes 
+        // проверка низа краев
         private void TetroCollided()
         {
             bottomCollided = checkCollided(0, 1);
@@ -407,7 +404,7 @@ namespace Tetris
             rightCollided = checkCollided(1, 0);
         }
 
-        //Check collided
+        //проверка коллизии для перемещения
         private bool checkCollided(int _leftRightOffset, int _bottomOffset)
         {
             Rectangle movingSquare;
@@ -436,7 +433,7 @@ namespace Tetris
             return false;
         }
        
-        // Draw next shape tetromino in nextShapeCanvas 
+        // следующая фигура
         private void drawNextShape(int shapeNumber)
         {
             nextShapeCanvas.Children.Clear();
@@ -468,12 +465,12 @@ namespace Tetris
         }
 
 
-        // This method called when shape it arrives at the bottom or collided
+        // столкновени
        private void shapeStoped()
        {
            timer.Stop();
            
-            // Game over condition
+            // конце игры
             if (downPos <= 2)
             {                          
                gameOver();
@@ -489,20 +486,20 @@ namespace Tetris
                     Rectangle square = (Rectangle)element;
                     if (square.Name.IndexOf("moving_") == 0)
                     {
-                        // Replace the name of squares arrived tetromino
+                        
                         string newName= square.Name.Replace("moving_", "arrived_");
                         square.Name=newName;
                     }
                 }
                 index++;
             }
-            // Check if line  is complete  and descend down the other shapes
+            
             checkComplete();
             reset();
             timer.Start();
          
         }
-        // Method for check if complete line
+        // ряд выстроен
         private void checkComplete()
         {
             int gridRow = tetrisGrid.RowDefinitions.Count;
@@ -526,7 +523,7 @@ namespace Tetris
                     }
                 }
 
-                // If squareCount == gridColumn this means tha the line is completed and must to be delete
+                //вызов удаления
                 if (squareCount == gridColumn)
                 {
                     
@@ -537,10 +534,10 @@ namespace Tetris
             }
         }
        
-        // Delete complete square line
+        // удалени
         private void deleteLine(int row)
         {
-            // Delete complete line
+            
             for(int i=0;i<tetrisGrid.ColumnDefinitions.Count;i++)
             {               
                 Rectangle square;
@@ -554,7 +551,7 @@ namespace Tetris
                 catch { }
                 
             }
-            // Move down the rest shape
+            //опускание всего остального
             foreach (UIElement element in tetrisGrid.Children)
             {
                 Rectangle square = (Rectangle)element;
@@ -564,14 +561,14 @@ namespace Tetris
                 }
             }
         }
-        // Get the score
+        // начисление очков
         private int getScore()
         {
             gameScore += 50 * gameLevel;
             return gameScore;
         }
 
-        // Some reset
+        // сброс
         private void reset()
         {
             downPos = 0;
@@ -587,7 +584,7 @@ namespace Tetris
             leftCollided = false;
             rightCollided = false;
         }
-        // The game over reset
+        // завершение
         private void gameOver()
         {
             Menu.IsEnabled = true;
@@ -613,7 +610,7 @@ namespace Tetris
         }
         
 
-        // Remove shape from grid   
+        // отчиска сетки
         private void removeShape()
         {
             int index = 0; 
@@ -634,7 +631,7 @@ namespace Tetris
           
         }
 
-        // Created the basic square for tetris shape
+        // кубик
         private Rectangle getBasicSquare(Color rectColor)
         {
             Rectangle rectangle=new Rectangle();
@@ -646,7 +643,7 @@ namespace Tetris
             return rectangle;
         }
 
-        // Get the gradient color for basic square
+        // градиент
         private LinearGradientBrush getGradientColor( Color clr)
         {         
             LinearGradientBrush gradientColor = new LinearGradientBrush();
@@ -663,13 +660,13 @@ namespace Tetris
             return gradientColor;
         }
 
-        // Access variable by string name
+        
         private int[,] getVariableByString(string variable)
         {
             return (int[,])this.GetType().GetField(variable).GetValue(this);
         }
         
-
+        //обработчик кнопки очков
         private void Score_Click(object sender, RoutedEventArgs e)
         {
             LeaderBoard leaderBoard = new LeaderBoard(leaders);
@@ -677,14 +674,14 @@ namespace Tetris
             timer.Stop();
             startStopBtn.Content = TryFindResource("r_Play");            
         }
-
+        // запись рекорда
         public void record_score(int score)
         {
             EnterName enterName = new EnterName();
             enterName.ShowDialog();
             leaders.Add(new Leader( enterName.player_name.Text, gameScore));            
         }
-
+        //смена языка
         private void ru_Click(object sender, RoutedEventArgs e)
         {
             language = ((Button)e.OriginalSource).Tag.ToString();
@@ -699,9 +696,6 @@ namespace Tetris
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            timer.Stop();
-        }
+        
     }    
 }

@@ -108,6 +108,7 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
@@ -117,10 +118,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\deleteLine.wav" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\collided.wav" />
+    <Resource Include="Resources\scale_1200.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

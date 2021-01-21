@@ -5,9 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tetris"
         mc:Ignorable="d"
-        Title="{DynamicResource r_Title_Name}" Height="144.375" Width="293.75">
-    <Grid >
-        <TextBox  x:Name="player_name" Margin="23,23,27,56"  />
-        <Button x:Name="Player_name_button" Margin="65,62,60,10" Content="OK" Click="Player_name_button_Click"/>
+        Title="{DynamicResource r_Title_Name}" Height="189.492" Width="293.75">
+    <Grid RenderTransformOrigin="0.498,0.348" >
+        <Grid.Background>
+            <ImageBrush ImageSource="Resources/scale_1200.png" Stretch="UniformToFill" />
+        </Grid.Background>
+        <TextBox  x:Name="player_name" Margin="28,0,22,132"  />
+        <Button x:Name="Player_name_button" Margin="64,125,61,0" Content="OK" Click="Player_name_button_Click" Opacity="0.7"/>
     </Grid>
 </Window>
